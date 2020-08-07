@@ -15,12 +15,12 @@ function machine_error_distribution(machine_data){
     if (document.getElementById('error_summary_bar') != null) {
         echarts.dispose(document.getElementById('error_summary_bar'))
     }
-    document.getElementById('error_summary_bar').style.height = 280 +'px';
+    document.getElementById('error_summary_bar').style.height = 240 +'px';
 
     let myChart = echarts.init(document.getElementById('error_summary_bar'));
     let x_data;
     let y_data = [];
-    let text= '机器'+machine_number.toString() + ': 错误分布类型图'
+    let text= '机器'+machine_number.toString() + ': 错误类型分布'
     x_data = Object.keys(dist).sort(function(a,b){
         return parseInt(dist[b]['count'])-parseInt(dist[a]['count']);
     });
@@ -115,13 +115,13 @@ function machine_error_information_shifts(id,raw_data,time_start,time_end){
 }
 
 function machine_error_information(id,timeline,valueData){
-    let text = '机器'+id.toString()+': 时段产生总故障 '+valueData.reduce(function (a,b) {
+    let text = '机器'+id.toString()+': 故障时段分布(总计:'+valueData.reduce(function (a,b) {
         return a+b;
-    })
+    })+')'
     if (document.getElementById('error_summary_line') != null) {
         echarts.dispose(document.getElementById('error_summary_line'))
     }
-    document.getElementById('error_summary_line').style.height = 280 +'px';
+    document.getElementById('error_summary_line').style.height = 240 +'px';
 
     let myChart = echarts.init(document.getElementById('error_summary_line'));
     let option = {

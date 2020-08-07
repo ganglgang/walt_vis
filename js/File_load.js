@@ -1,6 +1,6 @@
 
 
-function fileLoad(start_time,file){
+/*function fileLoad(start_time,file){
     main_chart(start_time,file);
     summary_table(1,start_time,file,'previous');
     machine_summary(1,start_time,file,'No');
@@ -79,4 +79,4 @@ function Generator(start_time,data){
         }
     }
     return result;
-}
+}*/

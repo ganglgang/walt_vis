@@ -1,5 +1,5 @@
 
-function machine_summary(caty,start_time,file,sort){
+/*function machine_summary(caty,start_time,file,sort){
 
     if (document.getElementById('no_machine_detail') != null) {
         echarts.dispose(document.getElementById('no_machine_detail'))
@@ -180,4 +180,4 @@ function clean_load_data(start_time,data){
     }
     return summary_dict;
 
-}
+}*/

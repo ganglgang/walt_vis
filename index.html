@@ -27,7 +27,9 @@
     <script type="text/javascript" src="js/machine_error_dist.js"></script>
     <script type="text/javascript" src="js/machine_error_table.js"></script>
     <script type="text/javascript" src="js/machine_production.js"></script>
+    <script type="text/javascript" src="js/General_function.js">
 
+    </script>
 
 
 </head>
@@ -69,7 +71,7 @@
 
         </div>
         <br>
-        <button id= 'date_update' type="button" class="btn btn-warning" onclick="date_update()" style="height:65px;top:25px"><strong>INQUIRY</strong></button>
+        <button id= 'date_update' type="button" class="btn" onclick="date_update()" ><img src="image/inquery.jpg" style="width:155px;height:75px;top:25px"/></button>
 
         <div class="col-sm">
 
@@ -186,8 +188,8 @@
     </div>
     <div class="row">
         <div class="col">
-            <div id="error_summary_bar" style="width:99%;"></div>
             <div id="error_summary_line" style="width:99%;"></div>
+            <div id="error_summary_bar" style="width:99%;"></div>
         </div>
         <div class="col-6">
             <div id="date_data" style="width:98%; height:300px;">
@@ -196,7 +198,9 @@
             </div>
         </div>
         <div class="col">
+            <div id="table_chart_shifts_time" style="width:95%; height: 240px"></div>
             <div id="table_chart_shifts" style="width:95%; height: 380px"></div>
+
         </div>
 
     </div>

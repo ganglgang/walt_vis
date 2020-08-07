@@ -1,4 +1,4 @@
-function machine_details(caty,raw_data,machine_data,timeline) {
+/*function machine_details(caty,raw_data,machine_data,timeline) {
 
     document.getElementById('machine_detail').style.height = 360+'px';
 
@@ -81,9 +81,9 @@ function machine_details(caty,raw_data,machine_data,timeline) {
     myChart.setOption(option);
 
 
-}
+}*/
 
-function No_machine_information(machine_number,result_data,timeline){
+/*function No_machine_information(machine_number,result_data,timeline){
     let id = machine_number;
     let id_information = load_machine_data(machine_number,result_data,timeline);
     let valueData = [];
@@ -303,7 +303,7 @@ function addTable(time,information) {
 
 }
 
-function time_transfer(date){
+/*function time_transfer(date){
     let h = date.getHours();
     let m = date.getMinutes();
     let s = date.getSeconds();
@@ -318,9 +318,9 @@ function time_transfer(date){
     }
     let time = h+":"+m+":"+s;
     return time;
-}
+}*/
 
-function calculate_duration(duration){
+/*function calculate_duration(duration){
 
     let time = Math.floor(duration / 1000);
     let h = Math.floor(time / 3600);
@@ -337,4 +337,4 @@ function calculate_duration(duration){
     }
     time = h + ":" + m + ":" + s
     return time
-}
+}*/

@@ -1,4 +1,4 @@
-function summary_table(cty,start_time,file,position){
+/*function summary_table(cty,start_time,file,position){
     d3.csv(file, function(data) {
         for (let i = 0; i < data.length; i++) {
             let temp_start = data[i]['DateRec'];
@@ -85,23 +85,11 @@ function summary_table(cty,start_time,file,position){
     //
 }
 
+*/
 
 
-function vSort(dict){
-    let result = []
-    let dic = dict;
-    let res_counts = Object.keys(dic).sort(function(a,b){
-        return dic[b]['counts']-dic[a]['counts'];
-    });
-    result.push(res_counts);
-    let res_down = Object.keys(dic).sort(function(a,b){
-        return dic[b]['downtime']-dic[a]['downtime'];
-    });
-    result.push(res_down);
-    return result;
-}
 
-function create_counts(top_data){
+/*function create_counts(top_data){
     let content_html = '';
     for(let i = 0;i<top_data.length;i++){
         let content = '<tr><td>'+top_data[i]['stopCode']+'</td><td>' + top_data[i]['description'] + '</td><td>' + top_data[i]['counts']+'</td><td>' + top_data[i]['proportion']+" %"+'</td></tr>';
@@ -300,4 +288,4 @@ function table_record(id, data){
     }
     myTableDiv.appendChild(table);
 
-}
+}*/

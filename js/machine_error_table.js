@@ -25,8 +25,6 @@ function machine_error_table(sd,st,ed,et,file,index,value){
         //two cases-1:in one shift; 2: more than one shift
         let time_array = []
         let result_data;
-        let valueData = [];
-        let total_counts = 0;
 
 
         //load other charts function
@@ -71,8 +69,44 @@ function machine_error_table(sd,st,ed,et,file,index,value){
                 table.rows[i].onclick = function () {
                     let str = this.cells[0].innerHTML;
                     let start = str.indexOf(':')+1
-                    let machine_data = new_result_data.filter(item=>item['StopCode']==str.slice(start,str.length))
+                    let stopCode = str.slice(start,str.length)
+                    let machine_data = new_result_data.filter(item=>item['StopCode']==stopCode)
                     draw_table_charts(machine_data);
+
+                    if(parseInt(time_end-time_start)===43200000){
+
+                        let select_array = [];
+
+                        for(let m in time_array){
+                            let obj = result_data[time_array[m]];
+                            let select_id_data = obj.filter(item=>item['StopCode']==stopCode)
+                            select_array.push(select_id_data.length)
+                        }
+                        draw_table_charts_time(stopCode,time_array,select_array)
+                    }else{
+                        let time_array = []
+                        //
+                        let time_start_2 = new Date(Date.parse(sd+' '+st));
+                        let time_end_2 = new Date(Date.parse(ed+' '+et));
+
+                        while(time_start_2 <= time_end_2){
+                            let t = new_time_transfer(time_start_2);
+                            time_array.push(t);
+                            new Date(time_start_2.setHours( time_start_2.getHours() + 12))
+                        }
+                        let new_select_data = new_result_data.filter(item=>item['StopCode']==stopCode)
+                        let select_y_array = []
+                        for (let i = 0; i< time_array.length-1;i++){
+                            let ti_start = new Date(Date.parse('2020-'+time_array[i]));
+                            let ti_end = new Date(Date.parse('2020-'+time_array[i+1]));
+
+                            let ini_select = new_select_data.filter(item=>item['DateRec']>=ti_start && item['DateRec']<ti_end)
+                            select_y_array.push(ini_select.length)
+                        }
+
+                        draw_table_charts_time(stopCode,time_array,select_y_array)
+
+                    }
                 };
             }
         }
@@ -84,6 +118,60 @@ function machine_error_table(sd,st,ed,et,file,index,value){
 
 
 
+
+function draw_table_charts_time(stopCode,x_array,y_array){
+    if (document.getElementById('table_chart_shifts_time') != null) {
+        echarts.dispose(document.getElementById('table_chart_shifts_time'))
+    }
+    let count = 0
+    y_array.forEach(function(d){
+        count+=d;
+    })
+
+    let text = '故障:'+stopCode.toString()+' 时段分布'+'(总计：'+count+')'
+    let myChart = echarts.init(document.getElementById('table_chart_shifts_time'));
+    let option = {
+        title: {
+            text: text,
+        },
+        tooltip: {
+            show:true,
+            transitionDuration:0,
+            trigger: 'axis'
+        },
+
+        xAxis: {
+            type: 'category',
+            data: x_array,
+            axisLabel: {
+                rotate: 45, //标签旋转角度，对于长文本标签设置旋转可避免文本重叠
+                textStyle: {
+                    fontSize : 10     //更改坐标轴文字大小
+                }
+            }
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [{
+            name:'发生次数：',
+            data: y_array,
+            type: 'line',
+            markPoint: {
+                data: [
+                    {type: 'max', name: '最大值'},
+                ]
+            },
+            color: '#dbbf33',
+
+        }]
+    };
+    myChart.clear();
+
+    myChart.setOption(option);
+    myChart.legend.position = "right";
+
+}
 
 
 function draw_table_charts(machineData){
@@ -117,8 +205,7 @@ function draw_table_charts(machineData){
     let x_data;
     let y_data1 = [];
     let y_data2 = [];
-    let text = '故障码分布:'+stopCode
-
+    let text = '故障'+stopCode.toString()+' 机器分布'
     x_data = res_counts;
     x_data.forEach(function (d,i) {
         y_data1.push(machine_errorCode[d]['Count']);

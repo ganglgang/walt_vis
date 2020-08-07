@@ -1,5 +1,5 @@
 
-function main_chart(start_time,file) {
+/*function main_chart(start_time,file) {
     if (document.getElementById('error_dist') != null) {
         echarts.dispose(document.getElementById('error_dist'))
     }
@@ -211,4 +211,4 @@ function drop_down(data){
     document.getElementById("drop").innerHTML = html.join("");
 
 
-}
+}*/

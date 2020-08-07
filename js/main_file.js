@@ -172,7 +172,7 @@ function sankey_diagram(time,result_data,count){
     let data =[]
     let error_links = []
     let error_dict = {}
-    let text = time+'前半小时产生故障数: '+count
+    let text = time+'故障统计: '+count
 
     for (let i in result_data){
         if(result_data[i]['StopCode'] in error_dict){
@@ -287,7 +287,9 @@ function charts_clean(){
     if (document.getElementById('machine_product') != null) {
         echarts.dispose(document.getElementById('machine_product'))
     }
-
+    if (document.getElementById('table_chart_shifts_time') != null) {
+        echarts.dispose(document.getElementById('table_chart_shifts_time'))
+    }
 }
 
 function text_clean(){
